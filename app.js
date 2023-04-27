@@ -94,17 +94,23 @@ app.post("/districts/", async (request, response) => {
 });
 
 //GET district API
-app.get("/districts/:districtId", async (request, response) => {
+app.get("/districts/:districtId/", async (request, response) => {
   const { districtId } = request.params;
   const getDistrictQuarry = `
     SELECT 
-      * 
+      district.district_id AS districtId,
+      district.district_name AS districtName,
+      district.state_id AS stateId,
+      district.cases AS cases,
+      district.cured AS cured,
+      district.active AS active,
+      district.deaths As deaths 
     FROM 
      district
     WHERE 
         district_id = ${districtId};`;
   const getDistrict = await database.get(getDistrictQuarry);
-  response.send(convertSnakeCaseToCamelCaseInDistrict(getDistrict));
+  response.send(getDistrict);
 });
 
 // delete district API

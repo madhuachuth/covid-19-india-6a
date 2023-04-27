@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### GET district http response
-GET http://localhost:3000/districts/322/
+GET http://localhost:3000/districts/301/
 
 
 ### Delete district http response
